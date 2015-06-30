@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+    id="com.any.cordova.fingerprint" version="0.0.1">
+    <name>Fingerprint</name>
+    <author>Maria Teresa Estigarribia</author>
+    <description>Plugin for Samsung Android Devices</description>
+    <license>Apache 2.0</license>
+    <keywords>cordova,samsung,fingerprint,touchid,authentication,id,login,passcode</keywords>
+    <engines>
+        <engine name="cordova" version=">=3.0.0"/>
+    </engines>
+
+    <js-module src="www/fingerprint.js" name="Fingerprint">
+        <clobbers target="cordova.plugins.fingerprint"/>
+    </js-module>
+
+    <!-- android -->
+    <platform name="android">
+        <config-file target="config.xml" parent="/*">
+            <feature name="Fingerprint">
+                <param name="android-package" value="com.any.cordova.Fingerprint"/>
+            </feature>
+        </config-file>
+        <source-file src="src/android/Fingerprint.java" target-dir="src/com/any/cordova/Fingerprint"/>
+		<source-file src="src/android/libs/pass-v1.1.3.jar" target-dir="libs" />
+		<source-file src="src/android/libs/sdk-v1.0.0.jar" target-dir="libs" />
+		<config-file target="AndroidManifest.xml" parent="/manifest">
+			<uses-permission android:name="com.samsung.android.providers.context.permission.WRITE_USE_APP_FEATURE_SURVEY"/>
+		</config-file>
+    </platform>
+</plugin>
